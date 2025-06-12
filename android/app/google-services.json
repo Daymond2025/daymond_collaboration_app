@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "564366639477",
+    "project_id": "daymondcollaboration",
+    "storage_bucket": "daymondcollaboration.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564366639477:android:72272b17a080106835533c",
+        "android_client_info": {
+          "package_name": "com.example.daymond_collaboration_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5GDwKMwKVjnz0PcbM5iAIFKUNAZGz7jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

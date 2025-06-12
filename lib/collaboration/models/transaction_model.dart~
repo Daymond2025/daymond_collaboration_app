@@ -1,0 +1,1423 @@
+import 'dart:convert';
+
+class TransactionsModel {
+  final int? id;
+  final String? reference;
+  final dynamic? transactionId;
+  final int? amount;
+  final String? category;
+  final String? status;
+  final OrderTransaction? orderTransaction;
+  final dynamic orderProduct;
+  final dynamic transactionsModelOperator;
+  final dynamic phoneNumber;
+  final FromTransaction? fromTransaction;
+  final DestinationTransaction? destinationTransaction;
+  final dynamic note;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+
+  TransactionsModel({
+    this.id,
+    this.reference,
+    this.transactionId,
+    this.amount,
+    this.category,
+    this.status,
+    this.orderTransaction,
+    this.orderProduct,
+    this.transactionsModelOperator,
+    this.phoneNumber,
+    this.fromTransaction,
+    this.destinationTransaction,
+    this.note,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory TransactionsModel.fromRawJson(String str) => TransactionsModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory TransactionsModel.fromJson(Map<String, dynamic> json) => TransactionsModel(
+    id: json["id"],
+    reference: json["reference"],
+    transactionId: json["transaction_id"],
+    amount: json["amount"],
+    category: json["category"],
+    status: json["status"],
+    orderTransaction:json["order"] == null ? null : OrderTransaction.fromJson(json["order"]),
+    orderProduct: json["order_product"],
+    transactionsModelOperator: json["operator"],
+    phoneNumber: json["phone_number"],
+    fromTransaction: FromTransaction.fromJson(json["from"]),
+    destinationTransaction: DestinationTransaction.fromJson(json["destination"]),
+    note: json["note"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "reference": reference,
+    "transaction_id": transactionId,
+    "amount": amount,
+    "category": category,
+    "status": status,
+    "order": orderTransaction!.toJson(),
+    "order_product": orderProduct,
+    "operator": transactionsModelOperator,
+    "phone_number": phoneNumber,
+    "from": fromTransaction!.toJson(),
+    "destination": destinationTransaction!.toJson(),
+    "note": note,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class DestinationTransaction {
+  final String? person;
+  final DestinationDataTransaction? data;
+
+  DestinationTransaction({
+    this.person,
+    this.data,
+  });
+
+  factory DestinationTransaction.fromRawJson(String str) => DestinationTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory DestinationTransaction.fromJson(Map<String, dynamic> json) => DestinationTransaction(
+    person: json["person"],
+    data: DestinationDataTransaction.fromJson(json["data"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "person": person,
+    "data": data!.toJson(),
+  };
+}
+
+class DestinationDataTransaction {
+  final int? id;
+  final DataUserTransaction? userTransaction;
+  final String? firstName;
+  final String? lastName;
+  final String? job;
+  final DataCityTransaction? city;
+  final int? stars;
+  final dynamic focalPoint;
+  final DateTime? expiryDate;
+  final String? code;
+  final bool? status;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+
+  DestinationDataTransaction({
+    this.id,
+    this.userTransaction,
+    this.firstName,
+    this.lastName,
+    this.job,
+    this.city,
+    this.stars,
+    this.focalPoint,
+    this.expiryDate,
+    this.code,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory DestinationDataTransaction.fromRawJson(String str) => DestinationDataTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory DestinationDataTransaction.fromJson(Map<String, dynamic> json) => DestinationDataTransaction(
+    id: json["id"],
+    userTransaction: DataUserTransaction.fromJson(json["user"]),
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    job: json["job"],
+    city: DataCityTransaction.fromJson(json["city"]),
+    stars: json["stars"],
+    focalPoint: json["focal_point"],
+    expiryDate: DateTime.parse(json["expiry_date"]),
+    code: json["code"],
+    status: json["status"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "user": userTransaction!.toJson(),
+    "first_name": firstName,
+    "last_name": lastName,
+    "job": job,
+    "city": city!.toJson(),
+    "stars": stars,
+    "focal_point": focalPoint,
+    "expiry_date": "${expiryDate!.year.toString().padLeft(4, '0')}-${expiryDate!.month.toString().padLeft(2, '0')}-${expiryDate!.day.toString().padLeft(2, '0')}",
+    "code": code,
+    "status": status,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class DataCityTransaction {
+  final int? id;
+  final CityName? name;
+  final CountryTransaction? country;
+
+  DataCityTransaction({
+    this.id,
+    this.name,
+    this.country,
+  });
+
+  factory DataCityTransaction.fromRawJson(String str) => DataCityTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory DataCityTransaction.fromJson(Map<String, dynamic> json) => DataCityTransaction(
+    id: json["id"],
+    name: cityNameValues.map[json["name"]],
+    country: CountryTransaction.fromJson(json["country"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": cityNameValues.reverse[name],
+    "country": country!.toJson(),
+  };
+}
+
+class CountryTransaction {
+  final String? flag;
+  final Code? code;
+  final Currency? currency;
+  final CountryName? name;
+  final Nationality? nationality;
+  final List<CityElementTransaction>? cities;
+
+  CountryTransaction({
+    this.flag,
+    this.code,
+    this.currency,
+    this.name,
+    this.nationality,
+    this.cities,
+  });
+
+  factory CountryTransaction.fromRawJson(String str) => CountryTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CountryTransaction.fromJson(Map<String, dynamic> json) => CountryTransaction(
+    flag: json["flag"],
+    code: codeValues.map[json["code"]],
+    currency: currencyValues.map[json["currency"]],
+    name: countryNameValues.map[json["name"]],
+    nationality: nationalityValues.map[json["nationality"]],
+    cities: List<CityElementTransaction>.from(json["cities"].map((x) => CityElementTransaction.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "flag": flag,
+    "code": codeValues.reverse[code],
+    "currency": currencyValues.reverse[currency],
+    "name": countryNameValues.reverse[name],
+    "nationality": nationalityValues.reverse[nationality],
+    "cities": List<dynamic>.from(cities!.map((x) => x.toJson())),
+  };
+}
+
+class CityElementTransaction {
+  final int? id;
+  final CityName? name;
+
+  CityElementTransaction({
+    this.id,
+    this.name,
+  });
+
+  factory CityElementTransaction.fromRawJson(String str) => CityElementTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CityElementTransaction.fromJson(Map<String, dynamic> json) => CityElementTransaction(
+    id: json["id"],
+    name: cityNameValues.map[json["name"]],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": cityNameValues.reverse[name],
+  };
+}
+
+enum CityName {
+  ABIDJAN,
+  BOUAK,
+  GAGNOA,
+  YAMOUSSOUKRO
+}
+
+final cityNameValues = EnumValues({
+  "Abidjan": CityName.ABIDJAN,
+  "Bouaké": CityName.BOUAK,
+  "Gagnoa": CityName.GAGNOA,
+  "Yamoussoukro": CityName.YAMOUSSOUKRO
+});
+
+enum Code {
+  CI
+}
+
+final codeValues = EnumValues({
+  "CI": Code.CI
+});
+
+enum Currency {
+  XOF
+}
+
+final currencyValues = EnumValues({
+  "XOF": Currency.XOF
+});
+
+enum CountryName {
+  CTE_D_IVOIRE
+}
+
+final countryNameValues = EnumValues({
+  "Côte d\\Ivoire": CountryName.CTE_D_IVOIRE
+});
+
+enum Nationality {
+  IVOIRIENNE
+}
+
+final nationalityValues = EnumValues({
+  "Ivoirienne": Nationality.IVOIRIENNE
+});
+
+class DataUserTransaction {
+  final int? id;
+  final String? email;
+  final String? phoneNumber;
+  final dynamic picturePath;
+
+  DataUserTransaction({
+    this.id,
+    this.email,
+    this.phoneNumber,
+    this.picturePath,
+  });
+
+  factory DataUserTransaction.fromRawJson(String str) => DataUserTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory DataUserTransaction.fromJson(Map<String, dynamic> json) => DataUserTransaction(
+    id: json["id"],
+    email: json["email"],
+    phoneNumber: json["phone_number"],
+    picturePath: json["picture_path"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "email": email,
+    "phone_number": phoneNumber,
+    "picture_path": picturePath,
+  };
+}
+
+class FromTransaction {
+  final String? person;
+  final SellerClassTransaction? data;
+
+  FromTransaction({
+    this.person,
+    this.data,
+  });
+
+  factory FromTransaction.fromRawJson(String str) => FromTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FromTransaction.fromJson(Map<String, dynamic> json) => FromTransaction(
+    person: json["person"],
+    data: SellerClassTransaction.fromJson(json["data"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "person": person,
+    "data": data!.toJson(),
+  };
+}
+
+class SellerClassTransaction {
+  final int? id;
+  final DataUserTransaction? userTransaction;
+  final String? firstName;
+  final String? lastName;
+  final String? job;
+  final DataCityTransaction? cityTransaction;
+  final int? stars;
+  final RecruiterTransaction? recruiterTransaction;
+  final dynamic ambassador;
+  final int? brokenLink;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+
+  SellerClassTransaction({
+    this.id,
+    this.userTransaction,
+    this.firstName,
+    this.lastName,
+    this.job,
+    this.cityTransaction,
+    this.stars,
+    this.recruiterTransaction,
+    this.ambassador,
+    this.brokenLink,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory SellerClassTransaction.fromRawJson(String str) => SellerClassTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory SellerClassTransaction.fromJson(Map<String, dynamic> json) => SellerClassTransaction(
+    id: json["id"],
+    userTransaction: DataUserTransaction.fromJson(json["user"]),
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    job: json["job"],
+    cityTransaction: DataCityTransaction.fromJson(json["city"]),
+    stars: json["stars"],
+    recruiterTransaction: RecruiterTransaction.fromJson(json["recruiter"]),
+    ambassador: json["ambassador"],
+    brokenLink: json["broken_link"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "user": userTransaction!.toJson(),
+    "first_name": firstName,
+    "last_name": lastName,
+    "job": job,
+    "city": cityTransaction!.toJson(),
+    "stars": stars,
+    "recruiter": recruiterTransaction!.toJson(),
+    "ambassador": ambassador,
+    "broken_link": brokenLink,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class RecruiterTransaction {
+  final int? id;
+  final String? firstName;
+  final String? lastName;
+  final int? brokenLink;
+
+  RecruiterTransaction({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.brokenLink,
+  });
+
+  factory RecruiterTransaction.fromRawJson(String str) => RecruiterTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory RecruiterTransaction.fromJson(Map<String, dynamic> json) => RecruiterTransaction(
+    id: json["id"],
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    brokenLink: json["broken_link"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "first_name": firstName,
+    "last_name": lastName,
+    "broken_link": brokenLink,
+  };
+}
+
+class OrderTransaction {
+  late final int? id;
+  late final String? person;
+  late final String? reference;
+  late final dynamic detail;
+  late final int? stars;
+  late final String? status;
+  late final int? returned;
+  late final SellerClassTransaction? sellerClassTransaction;
+  late final ClientTransaction? client;
+  late final List<ItemTransaction>? items;
+  late final DeliveryTransaction? delivery;
+  late final Expedition? expedition;
+  late final AfterExpeditionTransaction? afterExpeditionTransaction;
+  late final CanceledTransaction? canceled;
+  late final CanceledTransaction? recieved;
+  late final CanceledTransaction? validated;
+  late final CanceledTransaction? postponed;
+  late final CanceledTransaction? dontPickUp;
+  late final CanceledTransaction? pending;
+  late final CanceledTransaction? inProgress;
+  late final CanceledTransaction? confirmed;
+  late final DateTime? createdAt;
+  late final DateTime? updatedAt;
+  late final String? createdAtFr;
+  late final String? updatedAtFr;
+
+  OrderTransaction({
+    this.id,
+    this.person,
+    this.reference,
+    this.detail,
+    this.stars,
+    this.status,
+    this.returned,
+    this.sellerClassTransaction,
+    this.client,
+    this.items,
+    this.delivery,
+    this.expedition,
+    this.afterExpeditionTransaction,
+    this.canceled,
+    this.recieved,
+    this.validated,
+    this.postponed,
+    this.dontPickUp,
+    this.pending,
+    this.inProgress,
+    this.confirmed,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory OrderTransaction.fromRawJson(String str) => OrderTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory OrderTransaction.fromJson(Map<String, dynamic> json) => OrderTransaction(
+    id: json["id"],
+    person: json["person"],
+    reference: json["reference"],
+    detail: json["detail"],
+    stars: json["stars"],
+    status: json["status"],
+    returned: json["returned"],
+    sellerClassTransaction: SellerClassTransaction.fromJson(json["seller"]),
+    client: ClientTransaction.fromJson(json["client"]),
+    items: json["items"] == null ? [] : List<ItemTransaction>.from(json["items"].map((x) => ItemTransaction.fromJson(x))),
+    delivery: DeliveryTransaction.fromJson(json["delivery"]),
+    expedition:json["expedition"] == null ? null : Expedition.fromJson(json["expedition"]),
+    afterExpeditionTransaction:json["after_expedition"] == null ? null : AfterExpeditionTransaction.fromJson(json["after_expedition"]),
+    canceled:json["canceled"] == null ? null : CanceledTransaction.fromJson(json["canceled"]),
+    recieved:json["recieved"] == null ? null : CanceledTransaction.fromJson(json["recieved"]),
+    validated:json["validated"] == null ? null : CanceledTransaction.fromJson(json["validated"]),
+    postponed:json["postponed"] == null ? null : CanceledTransaction.fromJson(json["postponed"]),
+    dontPickUp:json["dont_pick_up"] == null ? null : CanceledTransaction.fromJson(json["dont_pick_up"]),
+    pending:json["pending"] == null ? null : CanceledTransaction.fromJson(json["pending"]),
+    inProgress:json["in_progress"] == null ? null : CanceledTransaction.fromJson(json["in_progress"]),
+    confirmed:json["confirmed"] == null ? null : CanceledTransaction.fromJson(json["confirmed"]),
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "person": person,
+    "reference": reference,
+    "detail": detail,
+    "stars": stars,
+    "status": status,
+    "returned": returned,
+    "seller": sellerClassTransaction!.toJson(),
+    "client": client!.toJson(),
+    "items": List<dynamic>.from(items!.map((x) => x.toJson())),
+    "delivery": delivery!.toJson(),
+    "expedition": expedition!.toJson(),
+    "after_expedition": afterExpeditionTransaction!.toJson(),
+    "canceled": canceled!.toJson(),
+    "recieved": recieved!.toJson(),
+    "validated": validated!.toJson(),
+    "postponed": postponed!.toJson(),
+    "dont_pick_up": dontPickUp!.toJson(),
+    "pending": pending!.toJson(),
+    "in_progress": inProgress!.toJson(),
+    "confirmed": confirmed!.toJson(),
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class AfterExpeditionTransaction {
+  final String? actor;
+  final AfterExpeditionUserTransaction? userAfterExpeditionUserTransaction;
+  final AfterExpeditionDataTransaction? dataTransaction;
+
+  AfterExpeditionTransaction({
+    this.actor,
+    this.userAfterExpeditionUserTransaction,
+    this.dataTransaction,
+  });
+
+  factory AfterExpeditionTransaction.fromRawJson(String str) => AfterExpeditionTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory AfterExpeditionTransaction.fromJson(Map<String, dynamic> json) => AfterExpeditionTransaction(
+    actor: json["actor"],
+    userAfterExpeditionUserTransaction: json["user"]==null?null: AfterExpeditionUserTransaction.fromJson(json["user"]),
+    dataTransaction: AfterExpeditionDataTransaction.fromJson(json["data"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "actor": actor,
+    "user": userAfterExpeditionUserTransaction!.toJson(),
+    "data": dataTransaction!.toJson(),
+  };
+}
+
+class AfterExpeditionDataTransaction {
+  final int? id;
+  final DataCityTransaction? cityTransaction;
+  final String? logo;
+  final String? name;
+  final String? ncc;
+  final String? email;
+  final String? phoneNumber;
+  final String? address;
+  final String? registersPath;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+  final String? code;
+  final BusinessTransaction? business;
+
+  AfterExpeditionDataTransaction({
+    this.id,
+    this.cityTransaction,
+    this.logo,
+    this.name,
+    this.ncc,
+    this.email,
+    this.phoneNumber,
+    this.address,
+    this.registersPath,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+    this.code,
+    this.business,
+  });
+
+  factory AfterExpeditionDataTransaction.fromRawJson(String str) => AfterExpeditionDataTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory AfterExpeditionDataTransaction.fromJson(Map<String, dynamic> json) => AfterExpeditionDataTransaction(
+    id: json["id"],
+    cityTransaction: DataCityTransaction.fromJson(json["city"]),
+    logo: json["logo"],
+    name: json["name"],
+    ncc: json["ncc"],
+    email: json["email"],
+    phoneNumber: json["phone_number"],
+    address: json["address"],
+    registersPath: json["registers_path"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+    code: json["code"],
+    business: BusinessTransaction.fromJson(json["business"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "city": cityTransaction!.toJson(),
+    "logo": logo,
+    "name": name,
+    "ncc": ncc,
+    "email": email,
+    "phone_number": phoneNumber,
+    "address": address,
+    "registers_path": registersPath,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+    "code": code,
+    "business": business!.toJson(),
+  };
+}
+
+class BusinessTransaction {
+  final int? id;
+  final String? isLocked;
+  final String? logo;
+  final String? name;
+  final String? ncc;
+  final String? email;
+  final String? phoneNumber;
+  final String? address;
+  final List<String>? registersPath;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+
+  BusinessTransaction({
+    this.id,
+    this.isLocked,
+    this.logo,
+    this.name,
+    this.ncc,
+    this.email,
+    this.phoneNumber,
+    this.address,
+    this.registersPath,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory BusinessTransaction.fromRawJson(String str) => BusinessTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory BusinessTransaction.fromJson(Map<String, dynamic> json) => BusinessTransaction(
+    id: json["id"],
+    isLocked: json["is_locked"],
+    logo: json["logo"],
+    name: json["name"],
+    ncc: json["ncc"],
+    email: json["email"],
+    phoneNumber: json["phone_number"],
+    address: json["address"],
+    registersPath: List<String>.from(json["registers_path"].map((x) => x)),
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "is_locked": isLocked,
+    "logo": logo,
+    "name": name,
+    "ncc": ncc,
+    "email": email,
+    "phone_number": phoneNumber,
+    "address": address,
+    "registers_path": List<dynamic>.from(registersPath!.map((x) => x)),
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class AfterExpeditionUserTransaction {
+  final int? id;
+  final dynamic picture;
+  final String? email;
+  final String? phoneNumber;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+  final EntityTransaction? entity;
+
+  AfterExpeditionUserTransaction({
+    this.id,
+    this.picture,
+    this.email,
+    this.phoneNumber,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+    this.entity,
+  });
+
+  factory AfterExpeditionUserTransaction.fromRawJson(String str) => AfterExpeditionUserTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory AfterExpeditionUserTransaction.fromJson(Map<String, dynamic> json) => AfterExpeditionUserTransaction(
+    id: json["id"],
+    picture: json["picture"],
+    email: json["email"],
+    phoneNumber: json["phone_number"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+    entity: EntityTransaction.fromJson(json["entity"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "picture": picture,
+    "email": email,
+    "phone_number": phoneNumber,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+    "entity": entity!.toJson(),
+  };
+}
+
+class EntityTransaction {
+  final String? firstName;
+  final String? lastName;
+
+  EntityTransaction({
+    this.firstName,
+    this.lastName,
+  });
+
+  factory EntityTransaction.fromRawJson(String str) => EntityTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory EntityTransaction.fromJson(Map<String, dynamic> json) => EntityTransaction(
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "first_name": firstName,
+    "last_name": lastName,
+  };
+}
+
+class CanceledTransaction {
+  final String? reason;
+  final String? date;
+  final String? time;
+
+  CanceledTransaction({
+    this.reason,
+    this.date,
+    this.time,
+  });
+
+  factory CanceledTransaction.fromRawJson(String str) => CanceledTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CanceledTransaction.fromJson(Map<String, dynamic> json) => CanceledTransaction(
+    reason: json["reason"],
+    date: json["date"],
+    time: json["time"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "reason": reason,
+    "date": date,
+    "time": time,
+  };
+}
+
+class ClientTransaction {
+  final String? name;
+  final String? phoneNumber;
+  final dynamic phoneNumber2;
+
+  ClientTransaction({
+    this.name,
+    this.phoneNumber,
+    this.phoneNumber2,
+  });
+
+  factory ClientTransaction.fromRawJson(String str) => ClientTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ClientTransaction.fromJson(Map<String, dynamic> json) => ClientTransaction(
+    name: json["name"],
+    phoneNumber: json["phone_number"],
+    phoneNumber2: json["phone_number_2"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "phone_number": phoneNumber,
+    "phone_number_2": phoneNumber2,
+  };
+}
+
+class DeliveryTransaction {
+  final String? date;
+  final String? time;
+  final DataCityTransaction? city;
+
+  DeliveryTransaction({
+    this.date,
+    this.time,
+    this.city,
+  });
+
+  factory DeliveryTransaction.fromRawJson(String str) => DeliveryTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory DeliveryTransaction.fromJson(Map<String, dynamic> json) => DeliveryTransaction(
+    date: json["date"],
+    time: json["time"],
+    city: DataCityTransaction.fromJson(json["city"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "date": date,
+    "time": time,
+    "city": city!.toJson(),
+  };
+}
+
+class Expedition {
+  final String? actor;
+  final AfterExpeditionUserTransaction? user;
+  final dynamic data;
+
+  Expedition({
+    this.actor,
+    this.user,
+    this.data,
+  });
+
+  factory Expedition.fromRawJson(String str) => Expedition.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Expedition.fromJson(Map<String, dynamic> json) => Expedition(
+    actor: json["actor"],
+    user:json["user"] == null ? null : AfterExpeditionUserTransaction.fromJson(json["user"]),
+    data: json["data"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "actor": actor,
+    "user": user!.toJson(),
+    "data": data,
+  };
+}
+
+class ShopClasstransaction {
+  final int? id;
+  final String? code;
+  final String? name;
+  final DataCityTransaction? city;
+  final BusinessTransaction? business;
+  final String? address;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+
+  ShopClasstransaction({
+    this.id,
+    this.code,
+    this.name,
+    this.city,
+    this.business,
+    this.address,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory ShopClasstransaction.fromRawJson(String str) => ShopClasstransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ShopClasstransaction.fromJson(Map<String, dynamic> json) => ShopClasstransaction(
+    id: json["id"],
+    code: json["code"],
+    name: json["name"],
+    city: DataCityTransaction.fromJson(json["city"]),
+    business: BusinessTransaction.fromJson(json["business"]),
+    address: json["address"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "code": code,
+    "name": name,
+    "city": city!.toJson(),
+    "business": business!.toJson(),
+    "address": address,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class ItemTransaction {
+  final String? reference;
+  final int? star;
+  final int? price;
+  final int? quantity;
+  final int? fees;
+  final dynamic size;
+  final dynamic color;
+  final ProducTransaction? product;
+  final String? status;
+  final int? percentage;
+  final int? orderCommission;
+  final int? sellerCommission;
+  final int? recruiterCommission;
+  final int? focalPointCommission;
+  final bool? payment;
+  final CanceledTransaction? canceled;
+  final CanceledTransaction? validated;
+  final dynamic refund;
+  final int? totalProduct;
+  final int? totalFees;
+  final int? total;
+
+  ItemTransaction({
+    this.reference,
+    this.star,
+    this.price,
+    this.quantity,
+    this.fees,
+    this.size,
+    this.color,
+    this.product,
+    this.status,
+    this.percentage,
+    this.orderCommission,
+    this.sellerCommission,
+    this.recruiterCommission,
+    this.focalPointCommission,
+    this.payment,
+    this.canceled,
+    this.validated,
+    this.refund,
+    this.totalProduct,
+    this.totalFees,
+    this.total,
+  });
+
+  factory ItemTransaction.fromRawJson(String str) => ItemTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ItemTransaction.fromJson(Map<String, dynamic> json) => ItemTransaction(
+    reference: json["reference"],
+    star: json["star"],
+    price: json["price"],
+    quantity: json["quantity"],
+    fees: json["fees"],
+    size: json["size"],
+    color: json["color"],
+    product: json["product"] == null ? null : ProducTransaction.fromJson(json["product"]),
+    status: json["status"],
+    percentage: json["percentage"],
+    orderCommission: json["order_commission"],
+    sellerCommission: json["seller_commission"],
+    recruiterCommission: json["recruiter_commission"],
+    focalPointCommission: json["focal_point_commission"],
+    payment: json["payment"],
+    canceled: CanceledTransaction.fromJson(json["canceled"]),
+    validated: CanceledTransaction.fromJson(json["validated"]),
+    refund: json["refund"],
+    totalProduct: json["total_product"],
+    totalFees: json["total_fees"],
+    total: json["total"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "reference": reference,
+    "star": star,
+    "price": price,
+    "quantity": quantity,
+    "fees": fees,
+    "size": size,
+    "color": color,
+    "product": product!.toJson(),
+    "status": status,
+    "percentage": percentage,
+    "order_commission": orderCommission,
+    "seller_commission": sellerCommission,
+    "recruiter_commission": recruiterCommission,
+    "focal_point_commission": focalPointCommission,
+    "payment": payment,
+    "canceled": canceled!.toJson(),
+    "validated": validated!.toJson(),
+    "refund": refund,
+    "total_product": totalProduct,
+    "total_fees": totalFees,
+    "total": total,
+  };
+}
+
+class ProducTransaction {
+  late final int? id;
+  late final String? approvedOrDisapprovedDate;
+  late final dynamic reasonDisapproved;
+  late final int? publish;
+  late final ShopClasstransaction? shop;
+  late final CategoryTransaction? subCategory;
+  late final StateTransaction? state;
+  late final dynamic brand;
+  late final int? popular;
+  late final int? star;
+  late final String? code;
+  late final String? category;
+  late final String? name;
+  late final String? subTitle;
+  late final String? description;
+  late final String? alias;
+  late final int? outStock;
+  late final int? unavailable;
+  late final int? invisible;
+  late final int? stock;
+  late final int? totalStock;
+  late final int? orderStock;
+  late final int? views;
+  late final dynamic link;
+  late final PriceTransaction? price;
+  late final PriceDeliveryTransaction? priceDelivery;
+  late final List<String>? images;
+  late final dynamic sizes;
+  late final dynamic colors;
+  late final DateTime? createdAt;
+  late final DateTime? updatedAt;
+  late final String? createdAtFr;
+  late final String? updatedAtFr;
+
+  ProducTransaction({
+    this.id,
+    this.approvedOrDisapprovedDate,
+    this.reasonDisapproved,
+    this.publish,
+    this.shop,
+    this.subCategory,
+    this.state,
+    this.brand,
+    this.popular,
+    this.star,
+    this.code,
+    this.category,
+    this.name,
+    this.subTitle,
+    this.description,
+    this.alias,
+    this.outStock,
+    this.unavailable,
+    this.invisible,
+    this.stock,
+    this.totalStock,
+    this.orderStock,
+    this.views,
+    this.link,
+    this.price,
+    this.priceDelivery,
+    this.images,
+    this.sizes,
+    this.colors,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+  });
+
+  factory ProducTransaction.fromRawJson(String str) => ProducTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ProducTransaction.fromJson(Map<String, dynamic> json) => ProducTransaction(
+    id: json["id"],
+    approvedOrDisapprovedDate: json["approved_or_disapproved_date"],
+    reasonDisapproved: json["reason_disapproved"],
+    publish: json["publish"],
+    shop: ShopClasstransaction.fromJson(json["shop"]),
+    subCategory:json["sub_category"] == null ? null : CategoryTransaction.fromJson(json["sub_category"]),
+    state: StateTransaction.fromJson(json["state"]),
+    brand: json["brand"],
+    popular: json["popular"],
+    star: json["star"],
+    code: json["code"],
+    category: json["category"],
+    name: json["name"],
+    subTitle: json["sub_title"],
+    description: json["description"],
+    alias: json["alias"],
+    outStock: json["out_stock"],
+    unavailable: json["unavailable"],
+    invisible: json["invisible"],
+    stock: json["stock"],
+    totalStock: json["total_stock"],
+    orderStock: json["order_stock"],
+    views: json["views"],
+    link: json["link"],
+    price: PriceTransaction.fromJson(json["price"]),
+    priceDelivery: PriceDeliveryTransaction.fromJson(json["price_delivery"]),
+    images: List<String>.from(json["images"].map((x) => x)),
+    sizes: json["sizes"],
+    colors: json["colors"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "approved_or_disapproved_date": approvedOrDisapprovedDate,
+    "reason_disapproved": reasonDisapproved,
+    "publish": publish,
+    "shop": shop!.toJson(),
+    "sub_category": subCategory!.toJson(),
+    "state": state!.toJson(),
+    "brand": brand,
+    "popular": popular,
+    "star": star,
+    "code": code,
+    "category": category,
+    "name": name,
+    "sub_title": subTitle,
+    "description": description,
+    "alias": alias,
+    "out_stock": outStock,
+    "unavailable": unavailable,
+    "invisible": invisible,
+    "stock": stock,
+    "total_stock": totalStock,
+    "order_stock": orderStock,
+    "views": views,
+    "link": link,
+    "price": price!.toJson(),
+    "price_delivery": priceDelivery!.toJson(),
+    "images": List<dynamic>.from(images!.map((x) => x)),
+    "sizes": sizes,
+    "colors": colors,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+  };
+}
+
+class PriceTransaction {
+  final int? price;
+  final int? partner;
+  final int? supplier;
+  final int? seller;
+  final int? max;
+  final int? min;
+  final dynamic commission;
+
+  PriceTransaction({
+    this.price,
+    this.partner,
+    this.supplier,
+    this.seller,
+    this.max,
+    this.min,
+    this.commission,
+  });
+
+  factory PriceTransaction.fromRawJson(String str) => PriceTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory PriceTransaction.fromJson(Map<String, dynamic> json) => PriceTransaction(
+    price: json["price"],
+    partner: json["partner"],
+    supplier: json["supplier"],
+    seller: json["seller"],
+    max: json["max"],
+    min: json["min"],
+    commission: json["commission"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "price": price,
+    "partner": partner,
+    "supplier": supplier,
+    "seller": seller,
+    "max": max,
+    "min": min,
+    "commission": commission,
+  };
+}
+
+class PriceDeliveryTransaction {
+  final dynamic city;
+  final dynamic noCity;
+
+  PriceDeliveryTransaction({
+    this.city,
+    this.noCity,
+  });
+
+  factory PriceDeliveryTransaction.fromRawJson(String str) => PriceDeliveryTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory PriceDeliveryTransaction.fromJson(Map<String, dynamic> json) => PriceDeliveryTransaction(
+    city: json["city"],
+    noCity: json["no_city"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "city": city,
+    "no_city": noCity,
+  };
+}
+
+class StateTransaction {
+  final int? id;
+  final String? name;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+
+  StateTransaction({
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  factory StateTransaction.fromRawJson(String str) => StateTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory StateTransaction.fromJson(Map<String, dynamic> json) => StateTransaction(
+    id: json["id"],
+    name: json["name"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+  };
+}
+
+class CategoryTransaction {
+  final int? id;
+  final String? name;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? createdAtFr;
+  final String? updatedAtFr;
+  final CategoryTransaction? category;
+  final String? picture;
+
+  CategoryTransaction({
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+    this.createdAtFr,
+    this.updatedAtFr,
+    this.category,
+    this.picture,
+  });
+
+  factory CategoryTransaction.fromRawJson(String str) => CategoryTransaction.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CategoryTransaction.fromJson(Map<String, dynamic> json) => CategoryTransaction(
+    id: json["id"],
+    name: json["name"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAtFr: json["created_at_fr"],
+    updatedAtFr: json["updated_at_fr"],
+    category: json["category"] == null ? null : CategoryTransaction.fromJson(json["category"]),
+    picture: json["picture"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
+    "created_at_fr": createdAtFr,
+    "updated_at_fr": updatedAtFr,
+    "category": category!.toJson(),
+    "picture": picture,
+  };
+}
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
+}
