@@ -144,17 +144,6 @@ class _ComptatScreenState extends State<ComptatScreen> {
                                         )
                                       ],
                                     )),
-                                Text(
-                                  'Chiffre d’affaires',
-                                  style: AppConstants.bodyTextStyle
-                                      .copyWith(fontSize: 10)
-                                      .copyWith(color: Colors.white),
-                                ),
-                                Text(
-                                  '${month.capitalizeFirst} $year',
-                                  style: const TextStyle(
-                                      fontSize: 10, color: Colors.white),
-                                ),
                               ],
                             ),
                           ),
