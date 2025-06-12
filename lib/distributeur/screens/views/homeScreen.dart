@@ -1699,7 +1699,7 @@ class _HomeSreenState extends State<HomeSreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 10),
+                padding: const EdgeInsets.only(top: 15, left: 10),
                 child: Align(
                   alignment:
                       Alignment.centerLeft, // Aligne le texte en haut à gauche
