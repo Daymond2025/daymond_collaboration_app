@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:564366639477:android:72272b17a080106835533c",
+        "mobilesdk_app_id": "1:564366639477:android:f41dd6c176acaa0935533c",
         "android_client_info": {
-          "package_name": "com.example.daymond_collaboration_app"
+          "package_name": "com.innovat.daymond_collaboration_app"
         }
       },
       "oauth_client": [],

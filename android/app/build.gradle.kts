@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.daymond_collaboration_app"
+    namespace = "com.innovat.daymond_collaboration_app"
     compileSdk = 35
     ndkVersion = "27.0.12077973"
 
@@ -32,7 +32,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.daymond_collaboration_app"
+        applicationId = "com.innovat.daymond_collaboration_app"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
