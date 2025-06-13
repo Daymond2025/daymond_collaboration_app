@@ -99,6 +99,7 @@ dependencies:
   firebase_messaging: ^15.2.6
   flutter_local_notifications: ^19.2.1
   http: ^1.4.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -111,7 +112,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/images/daymond_logo.png"    
